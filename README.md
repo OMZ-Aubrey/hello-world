@@ -1,6 +1,8 @@
 两个任务。
 1、将意见反馈平台的管理端部分的function：initlist改为列表加载变成实时数据库监听形式触发
-
+修改initlist()代码 。修改列表实现，为数据库监听
+调用init云函数代码修改。在webviews/index.js中修改原代码： cloud.callFunction({ name: 'init' }) .then((res) => { refreshlist(res.result.list); }); 
+为：
 * 加载意见列表（调用云函数：init）
  */
 function initlist(){
@@ -28,6 +30,8 @@ function initlist(){
 }
 
 2、用户端列表加载云函数（function：init）适配超过100条的场景，采用promise all的形式进行改造，使其可以支持超过100条
+
+修改cloudfunctions/init/index.js 中云函数的实现 ， 使用Promise.all
 
 const db = cloud.database();
 const _ = db.command;
