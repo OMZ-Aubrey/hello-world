@@ -26,6 +26,7 @@ function initlist(){
     
         });
 }
+
 2、用户端列表加载云函数（function：init）适配超过100条的场景，采用promise all的形式进行改造，使其可以支持超过100条
 
 const db = cloud.database();
